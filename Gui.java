@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class Gui implements ActionListener {
@@ -38,9 +39,17 @@ public class Gui implements ActionListener {
 	panel.add(label3);
 	button.addActionListener(new Gui());
 	frame.setVisible(true);
-	
-	}
+	frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0),"clickButton");
 
+			frame.getRootPane().getActionMap().put("clickButton",new AbstractAction(){
+			        public void actionPerformed(ActionEvent ae)
+			        {
+			    button.doClick();
+			    System.out.println("button clicked");
+			        }
+			    });
+			
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String username =textfield.getText();
